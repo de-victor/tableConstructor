@@ -11,7 +11,14 @@ $.fn.natiTable = function (params) {
     
     let conf = {objInTr : undefined,
                 header  : [],
-                data    : []};
+                data    : [],
+                buttons : []
+               };
+    /*
+    button = {element : '',
+                title : '',
+                function : ''}
+    */
 
     $.extend(conf, params);
     
@@ -29,6 +36,12 @@ $.fn.natiTable = function (params) {
         tHead.append(th.append(obj));
     });
     
+    //build th for buttons
+    conf.buttons.forEach((obj)=>{
+        let th = $('<th></th>');
+        tHead.append(th.append(obj));
+    });
+    
 
 
     //build table tbody
@@ -41,6 +54,13 @@ $.fn.natiTable = function (params) {
         properties.forEach((propertie)=>{
             let td = $('<td></td>');
             td.append(obj[propertie]);
+            tr.append(td);
+        });
+        conf.buttons.forEach((button)=>{
+            let td = $('<td></td>');
+            let element = $(button.element);
+            element.unbind().on('click', button.function);
+            td.append(element);
             tr.append(td);
         });
         tbody.append(tr);
