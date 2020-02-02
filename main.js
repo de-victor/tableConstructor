@@ -1,11 +1,7 @@
 $( document ).ready(function() {
 
-    $('.h2').testeFun();
-
     let lista = [{nome: 'fulano de tal', matricula: 10251, codigo: 1},
                  {nome: 'Beltrano de faloste', matricula: 5248, codigo: 2}];
-    
-    
 
     let acaoRemover = (event)=>{
         let obj = event.data.tr.data('funcionario');
