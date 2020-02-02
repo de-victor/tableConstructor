@@ -1,4 +1,4 @@
-$.fn.natiTable = function (params) {
+$.fn.tableConstructor = function (params) {
     let table = $(this);
     let head = [];
     let properties = [];

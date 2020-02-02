@@ -21,5 +21,5 @@ $( document ).ready(function() {
                  };
     
 
-    $('.tabela-teste').natiTable(tabela);
+    $('.tabela-teste').tableConstructor(tabela);
 });
