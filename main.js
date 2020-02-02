@@ -13,11 +13,11 @@ $( document ).ready(function() {
         alert('Alterando funcionario de codigo: '+obj.codigo);
     };
 
-    let tabela = {header : [{Funcionario : 'nome'}, {Matricula:'matricula'}],
+    let tabela = {header : [{'Funcionario prin' : 'nome'}, {'Matricula':'matricula'}],
                   data : lista,
                   objInTr : 'funcionario',
-                  buttons : [{element : '<button>remover</button>', function : acaoRemover},
-                             {element : '<button>alterar</button>', function : acaoAlterar}]
+                  buttons : [{element : '<button class="button1">remover</button>', function : acaoRemover},
+                             {element : '<button class="button2">alterar</button>', function : acaoAlterar}]
                  };
     
 
