@@ -1,9 +1,3 @@
-$.fn.testeFun = function () {
-    console.log(this.length);
-    console.log($(this).html());
-};
-
-
 $.fn.natiTable = function (params) {
     let table = $(this);
     let head = [];
@@ -14,11 +8,6 @@ $.fn.natiTable = function (params) {
                 data    : [],
                 buttons : []
                };
-    /*
-    button = {element : '',
-                title : '',
-                function : ''}
-    */
 
     $.extend(conf, params);
     
@@ -37,13 +26,15 @@ $.fn.natiTable = function (params) {
     });
     
     //build th for buttons
+    let th = $('<th colspan="'+conf.buttons.length+'"></th>');
+    tHead.append(th);
+    /*
     conf.buttons.forEach((obj)=>{
         let th = $('<th></th>');
         tHead.append(th.append(obj));
     });
+    */
     
-
-
     //build table tbody
     let tbody = $('<tbody></tbody>');
     conf.data.forEach((obj)=>{
@@ -59,14 +50,13 @@ $.fn.natiTable = function (params) {
         conf.buttons.forEach((button)=>{
             let td = $('<td></td>');
             let element = $(button.element);
-            element.unbind().on('click', button.function);
+            element.unbind().on('click',{tr:tr}, button.function);
             td.append(element);
             tr.append(td);
         });
         tbody.append(tr);
     });
 
-    
     //apend for table element
     table.append(tHead);
     table.append(tbody);
