@@ -3,13 +3,6 @@ $.fn.tableConstructor = function (params) {
     let tHead = $('<tr></tr>');
     let tbody = $('<tbody></tbody>');
     
-    let head = [];
-    let properties = [];
-    
-
-    
-    
-    
     let conf = {objInTr : undefined,
                 header        : [],
                 data          : [],
@@ -28,39 +21,14 @@ $.fn.tableConstructor = function (params) {
         let th = $('<th '+style+'></th>');
         tHead.append(th.append(obj.head));
     });
-
-    /*
-    conf.header.forEach((obj)=>{
-        for ( var property in obj ) {
-            head.push(property);
-            properties.push(obj[property]);
-        };
-    });    
-    
-    
-    //build table header
-    
-    head.forEach(function(obj){
-        let th = $('<th></th>');
-        tHead.append(th.append(obj));
-    });
-    */
-    
-    //table.append(tFoot);
     
     //build th for buttons
     let th = $('<th colspan="'+conf.buttons.length+'"></th>');
     tHead.append(th);
-    /*
-    conf.buttons.forEach((obj)=>{
-        let th = $('<th></th>');
-        tHead.append(th.append(obj));
-    });
-    */
     
     //build table tbody
     let buildTBody = (data)=>{
-        
+        tbody.html('');
         data.forEach((obj)=>{
             let tr = $('<tr></tr>');
             if(conf.objInTr){
