@@ -14,10 +14,10 @@ $( document ).ready(function() {
     };
 
     let tabela = {header : [{head : 'Funcionario prin', 
-                             propertie: 'nome',
+                             property: 'nome',
                              thStyle : 'width : 50%'}, 
                             {head : 'Matricula', 
-                             propertie: 'matricula'}],
+                             property: 'matricula'}],
                   data : lista,
                   numberPerPage : 10,
                   objInTr : 'funcionario',

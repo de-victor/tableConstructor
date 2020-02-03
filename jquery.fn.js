@@ -2,6 +2,10 @@ $.fn.tableConstructor = function (params) {
     let table = $(this);
     let tHead = $('<tr></tr>');
     let tbody = $('<tbody></tbody>');
+
+    if(!table.is('table') || !table){
+        throw 'Elemento informado não é uma <table>';
+    }
     
     let conf = {objInTr : undefined,
                 header        : [],
@@ -40,7 +44,7 @@ $.fn.tableConstructor = function (params) {
                     style = 'style = "'+head.tdStyle+'"';
                 }
                 let td = $('<td '+style+'></td>');
-                td.append(obj[head.propertie]);
+                td.append(obj[head.property]);
                 tr.append(td);
             });
             conf.buttons.forEach((button)=>{
