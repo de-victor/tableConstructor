@@ -13,7 +13,17 @@ $( document ).ready(function() {
         alert('Alterando funcionario de codigo: '+obj.codigo);
     };
 
-    let tabela = {header : [{'Funcionario prin' : 'nome'}, {'Matricula':'matricula'}],
+    /*
+    {header : ,
+    propertie  : ,
+    thStyle : ,
+    tdStyle : }
+    */
+    let tabela = {header : [{head : 'Funcionario prin', 
+                             propertie: 'nome',
+                             thStyle : 'width : 50%'}, 
+                            {head : 'Matricula', 
+                             propertie: 'matricula'}],
                   data : lista,
                   objInTr : 'funcionario',
                   buttons : [{element : '<button class="button1">remover</button>', function : acaoRemover, style : 'width : 1%'},

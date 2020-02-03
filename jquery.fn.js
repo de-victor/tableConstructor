@@ -1,8 +1,13 @@
 $.fn.tableConstructor = function (params) {
     let table = $(this);
+    let tHead = $('<tr></tr>');
+    let tbody = $('<tbody></tbody>');
+    
     let head = [];
     let properties = [];
-    let tbody = $('<tbody></tbody>');
+    
+
+    
     
     
     let conf = {objInTr : undefined,
@@ -14,6 +19,17 @@ $.fn.tableConstructor = function (params) {
 
     $.extend(conf, params);
     
+
+    conf.header.forEach((obj)=>{
+        let style = '';
+        if(obj.thStyle){
+            style = 'style = "'+obj.thStyle+'"';
+        }
+        let th = $('<th '+style+'></th>');
+        tHead.append(th.append(obj.head));
+    });
+
+    /*
     conf.header.forEach((obj)=>{
         for ( var property in obj ) {
             head.push(property);
@@ -21,12 +37,14 @@ $.fn.tableConstructor = function (params) {
         };
     });    
     
+    
     //build table header
-    let tHead = $('<tr></tr>');
+    
     head.forEach(function(obj){
         let th = $('<th></th>');
         tHead.append(th.append(obj));
     });
+    */
     
     //table.append(tFoot);
     
@@ -48,15 +66,19 @@ $.fn.tableConstructor = function (params) {
             if(conf.objInTr){
                 tr.data(conf.objInTr, obj);
             }
-            properties.forEach((propertie)=>{
-                let td = $('<td></td>');
-                td.append(obj[propertie]);
+            conf.header.forEach((head)=>{
+                let style = '';
+                if(head.tdStyle){
+                    style = 'style = "'+head.tdStyle+'"';
+                }
+                let td = $('<td '+style+'></td>');
+                td.append(obj[head.propertie]);
                 tr.append(td);
             });
             conf.buttons.forEach((button)=>{
-                let style = 'style = ';
+                let style = '';
                 if(button.style){
-                    style += '"'+button.style+'"';
+                    style = 'style = "'+button.style+'"';
                 }
                 let td = $('<td '+style+'></td>');
                 let element = $(button.element);
