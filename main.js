@@ -16,8 +16,8 @@ $( document ).ready(function() {
     let tabela = {header : [{'Funcionario prin' : 'nome'}, {'Matricula':'matricula'}],
                   data : lista,
                   objInTr : 'funcionario',
-                  buttons : [{element : '<button class="button1">remover</button>', function : acaoRemover},
-                             {element : '<button class="button2">alterar</button>', function : acaoAlterar}]
+                  buttons : [{element : '<button class="button1">remover</button>', function : acaoRemover, style : 'width : 1%'},
+                             {element : '<button class="button2">alterar</button>', function : acaoAlterar, style : 'width : 1%'}]
                  };
     
 
