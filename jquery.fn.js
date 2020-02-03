@@ -1,6 +1,6 @@
 $.fn.tableConstructor = function (params) {
     let table = $(this);
-    let tHead = $('<tr></tr>');
+    let tHead = $('<thead></thead>');
     let tbody = $('<tbody></tbody>');
 
     if(!table.is('table') || !table){
@@ -16,19 +16,23 @@ $.fn.tableConstructor = function (params) {
 
     $.extend(conf, params);
     
-
+    let trHead = $('<tr></tr>');
     conf.header.forEach((obj)=>{
         let style = '';
         if(obj.thStyle){
             style = 'style = "'+obj.thStyle+'"';
         }
         let th = $('<th '+style+'></th>');
-        tHead.append(th.append(obj.head));
+        trHead.append(th.append(obj.head));
     });
+    
     
     //build th for buttons
     let th = $('<th colspan="'+conf.buttons.length+'"></th>');
-    tHead.append(th);
+    trHead.append(th);
+    
+    //append all head elments to thead tag
+    tHead.append(trHead);
     
     //build table tbody
     let buildTBody = (data)=>{
