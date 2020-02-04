@@ -17,7 +17,7 @@ app.tableController = (()=>{
         let elements = {tableTeste : $('.tabela-teste')}
         
         scope.elements = elements;
-    }
+    };
 
     let loadDummyData = ()=>{
         let lista = [{nome: 'Fulano de tal', matricula: 10251, codigo: 1},
