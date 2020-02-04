@@ -1,6 +1,11 @@
 $( document ).ready(function() {
 
-    let lista = [{nome: 'fulano de tal', matricula: 10251, codigo: 1},
+    let lista = [{nome: 'Fulano de tal', matricula: 10251, codigo: 1},
+                 {nome: 'Alana maria', matricula: 2, codigo: 3},
+                 {nome: 'Juão Paulo', matricula: 78, codigo: 4},
+                 {nome: 'Ana Livia', matricula: 101, codigo: 100},
+                 {nome: 'Anna Mara', matricula: 125, codigo: 105},
+                 {nome: 'Claudio Furtado', matricula: 785, codigo: 45},
                  {nome: 'Beltrano de faloste', matricula: 5248, codigo: 2}];
 
     let acaoRemover = (event)=>{
@@ -13,7 +18,7 @@ $( document ).ready(function() {
         alert('Alterando funcionario de codigo: '+obj.codigo);
     };
 
-    let tabela = {header : [{head : 'Funcionario prin', 
+    let tabela = {header : [{head : 'Funcionaro ground', 
                              property: 'nome',
                              thStyle : 'width : 50%'}, 
                             {head : 'Matricula', 
@@ -21,8 +26,8 @@ $( document ).ready(function() {
                   data : lista,
                   numberPerPage : 10,
                   objInTr : 'funcionario',
-                  buttons : [{element : '<button class="button1">remover</button>', function : acaoRemover, style : 'width : 1%'},
-                             {element : '<button class="button2">alterar</button>', function : acaoAlterar, style : 'width : 1%'}]
+                  buttons : [{element : '<input type="button" value="remover" class="btn btn-primary button1"></input>', function : acaoRemover, style : 'width : 1%'},
+                             {element : '<input type="button" value="alterar" class="btn btn-primary button2"></input>', function : acaoAlterar, style : 'width : 1%'}]
                  };
     
 

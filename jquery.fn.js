@@ -11,10 +11,46 @@ $.fn.tableConstructor = function (params) {
                 header        : [],
                 data          : [],
                 buttons       : [],
-                numberPerPage : 5
+                numberPerPage : 5,
+                order         : 0
                };
 
     $.extend(conf, params);
+
+    let orderFunction = (event)=>{
+        table.html('');
+        $('.pagination-random-01').remove();
+
+        let property = event.data.obj.property;
+        let sortFunction = (a,b)=>{
+            if(!conf.order || conf.order == 0){
+                if(a[property] < b[property]){
+                    return -1;
+                }
+                if(a[property] > b[property]){
+                    return 1;
+                }
+            }
+            else{
+                if(a[property] > b[property]){
+                    return -1;
+                }
+                if(a[property] < b[property]){
+                    return 1;
+                }
+            }
+            return 0;
+        };
+        conf.data.sort(sortFunction);
+        if(!conf.order || conf.order == 0){
+            conf.order = 1;
+        }
+        else{
+            conf.order = 0;
+        }
+        
+        table.tableConstructor(conf);
+    };
     
     let trHead = $('<tr></tr>');
     conf.header.forEach((obj)=>{
@@ -23,9 +59,10 @@ $.fn.tableConstructor = function (params) {
             style = 'style = "'+obj.thStyle+'"';
         }
         let th = $('<th '+style+'></th>');
+        th.css('cursor', 'pointer');
+        th.unbind().on('click',{obj:obj}, orderFunction);
         trHead.append(th.append(obj.head));
     });
-    
     
     //build th for buttons
     let th = $('<th colspan="'+conf.buttons.length+'"></th>');
@@ -68,7 +105,11 @@ $.fn.tableConstructor = function (params) {
     
     
     //pagination using paginationJS
-    table.parent().pagination({
+    let parent = table.parent();
+    let paginationDiv = $('<div class="pagination-random-01"></div');
+    parent.append(paginationDiv);
+
+    paginationDiv.pagination({
         dataSource: conf.data,
         pageSize: conf.numberPerPage,
         callback: function(data, pagination) {
