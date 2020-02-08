@@ -1,25 +1,32 @@
 $.fn.tableConstructor = function (params) {
+
     let table = $(this);
+    let parentDiv = $('<div class="table-constructor-div"></div>');
     let tHead = $('<thead></thead>');
-    let tbody = $('<tbody></tbody>');
+    let tbody = $('<tbody class="table-constructor-t-body"></tbody>');
+    let paginationDiv = $('<div class="pagination-random-01"></div');
+
+    table.parent().prepend(parentDiv);
 
     if(!table.is('table') || !table){
         throw 'Elemento informado não é uma <table>';
     }
     
+    //default configurations
     let conf = {objInTr : undefined,
                 header        : [],
                 data          : [],
                 buttons       : [],
                 numberPerPage : 5,
-                order         : 0
+                order         : 0,
+                filterClass   : 'btn-primary'
                };
 
+    //initialization of user params into default params
     $.extend(conf, params);
 
     let orderFunction = (event)=>{
-        table.html('');
-        $('.pagination-random-01').remove();
+        
 
         let property = event.data.obj.property;
         let sortFunction = (a,b)=>{
@@ -49,7 +56,12 @@ $.fn.tableConstructor = function (params) {
             conf.order = 0;
         }
         
-        table.tableConstructor(conf);
+        table.find('.table-constructor-t-body').html('');
+        paginationDiv.html('');
+        creatPagination();
+        parentDiv.append(paginationDiv);
+        tHead.find('.'+conf.filterClass).removeClass();
+        event.data.th.addClass(conf.filterClass);
     };
     
     let trHead = $('<tr></tr>');
@@ -60,7 +72,7 @@ $.fn.tableConstructor = function (params) {
         }
         let th = $('<th '+style+'></th>');
         th.css('cursor', 'pointer');
-        th.unbind().on('click',{obj:obj}, orderFunction);
+        th.unbind().on('click',{obj:obj, th:th}, orderFunction);
         trHead.append(th.append(obj.head));
     });
     
@@ -105,20 +117,24 @@ $.fn.tableConstructor = function (params) {
     
     
     //pagination using paginationJS
-    let parent = table.parent();
-    let paginationDiv = $('<div class="pagination-random-01"></div');
-    parent.append(paginationDiv);
+    
+    let creatPagination = ()=>{
+        paginationDiv.pagination({
+            dataSource: conf.data,
+            pageSize: conf.numberPerPage,
+            callback: function(data, pagination) {
+                buildTBody(data);
+            }
+        });
+    };
 
-    paginationDiv.pagination({
-        dataSource: conf.data,
-        pageSize: conf.numberPerPage,
-        callback: function(data, pagination) {
-            buildTBody(data);
-        }
-    })
+    creatPagination();
 
     table.append(tHead);
     table.append(tbody);
+
+    parentDiv.append(table);
+    parentDiv.append(paginationDiv);
 };
 
 
