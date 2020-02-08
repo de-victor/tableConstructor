@@ -23,7 +23,7 @@ app.tableController = (()=>{
     let loadDummyData = ()=>{
         let lista = [{nome: 'Fulano de tal', matricula: 10251, codigo: 1},
                      {nome: 'Alana maria', matricula: 2, codigo: 3},
-                     {nome: 'Juão Paulo', matricula: 78, codigo: 4},
+                     {nome: 'João Paulo', matricula: 78, codigo: 4},
                      {nome: 'Ana Livia', matricula: 101, codigo: 100},
                      {nome: 'Anna Mara', matricula: 125, codigo: 105},
                      {nome: 'Claudio Furtado', matricula: 785, codigo: 45},

@@ -26,7 +26,6 @@ $.fn.tableConstructor = function (params) {
     $.extend(conf, params);
 
     let orderFunction = (event)=>{
-        
 
         let property = event.data.obj.property;
         let sortFunction = (a,b)=>{
@@ -58,7 +57,7 @@ $.fn.tableConstructor = function (params) {
         
         table.find('.table-constructor-t-body').html('');
         paginationDiv.html('');
-        creatPagination();
+        createPagination();
         parentDiv.append(paginationDiv);
         tHead.find('.'+conf.filterClass).removeClass();
         event.data.th.addClass(conf.filterClass);
@@ -118,7 +117,7 @@ $.fn.tableConstructor = function (params) {
     
     //pagination using paginationJS
     
-    let creatPagination = ()=>{
+    let createPagination = ()=>{
         paginationDiv.pagination({
             dataSource: conf.data,
             pageSize: conf.numberPerPage,
@@ -128,7 +127,7 @@ $.fn.tableConstructor = function (params) {
         });
     };
 
-    creatPagination();
+    createPagination();
 
     table.append(tHead);
     table.append(tbody);
