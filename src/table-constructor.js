@@ -19,7 +19,8 @@ $.fn.tableConstructor = function (params) {
                 buttons       : [],
                 numberPerPage : 5,
                 order         : 0,
-                filterClass   : 'btn-primary'
+                filterClass   : 'btn-primary',
+                sort : true
                };
 
     //initialization of user params into default params
@@ -70,14 +71,20 @@ $.fn.tableConstructor = function (params) {
             style = 'style = "'+obj.thStyle+'"';
         }
         let th = $('<th '+style+'></th>');
-        th.css('cursor', 'pointer');
-        th.unbind().on('click',{obj:obj, th:th}, orderFunction);
+        
+        if(conf.sort){
+            th.css('cursor', 'pointer');
+            th.unbind().on('click',{obj:obj, th:th}, orderFunction);
+        }
+        
         trHead.append(th.append(obj.head));
     });
     
     //build th for buttons
-    let th = $('<th colspan="'+conf.buttons.length+'"></th>');
-    trHead.append(th);
+    if(conf.buttons.length > 0){
+        let th = $('<th colspan="'+conf.buttons.length+'"></th>');
+        trHead.append(th);
+    }
     
     //append all head elments to thead tag
     tHead.append(trHead);
