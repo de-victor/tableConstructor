@@ -6,6 +6,12 @@ $.fn.tableConstructor = function (params) {
     let tbody = $('<tbody class="table-constructor-t-body"></tbody>');
     let paginationDiv = $('<div class="pagination-random-01"></div');
 
+    if(table.parent().hasClass('table-constructor-div')){
+        parentDiv = table.parent();
+        parentDiv.html('');
+        table.html('');
+    }
+
     table.parent().prepend(parentDiv);
 
     if(!table.is('table') || !table){
@@ -20,7 +26,7 @@ $.fn.tableConstructor = function (params) {
                 numberPerPage : 5,
                 order         : 0,
                 filterClass   : 'btn-primary',
-                sort : true
+                sort : false
                };
 
     //initialization of user params into default params

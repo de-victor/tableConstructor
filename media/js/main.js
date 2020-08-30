@@ -14,7 +14,8 @@ app.tableController = (()=>{
     };
 
     let loadScope = ()=>{
-        let elements = {tableTeste  : $('.tabela-teste'),
+        let elements = {btnBuildTables : $('.btn-build'),
+                        tableTeste  : $('.tabela-teste'),
                         tableTeste2 : $('.tabela-teste2')}
         
         scope.elements = elements;
@@ -52,10 +53,14 @@ app.tableController = (()=>{
                       numberPerPage : 5,
                       objInTr : 'funcionario',
                       filterClass : 'btn-primary',
-                      buttons : [{element : '<input type="button" value="remover" class="btn btn-primary button1"></input>', function : acaoRemover, style : 'width : 1%'},
-                                 {element : '<input type="button" value="alterar" class="btn btn-primary button2"></input>', function : acaoAlterar, style : 'width : 1%'}]
+                      buttons : [{element : '<input type="button" value="remover" class="btn btn-primary button1"></input>', 
+                                  function : acaoRemover, 
+                                  style : 'width : 1%'},
+                                 {element : '<input type="button" value="alterar" class="btn btn-primary button2"></input>', 
+                                  function : acaoAlterar, 
+                                  style : 'width : 1%'}]
                      };
-
+        
         scope.elements.tableTeste.tableConstructor(tabela);
         scope.elements.tableTeste2.tableConstructor(tabela);
     };
